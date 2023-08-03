@@ -10,17 +10,19 @@ const ProductProvider = ({ children }) => {
       const response = await fetch("https://fakestoreapi.com/products");
 
       const data = await response.json();
-
       setProducts(data);
     };
     fetchProducts();
   }, []);
 
+  console.log("from products; ", products); 
+
   return (
-    <ProductContext.Provider value={products}>
+    <ProductContext.Provider value={{products}}>
       {children}
     </ProductContext.Provider>
   );
 };
 
-export default ProductProvider;
+export default ProductProvider; 
+
