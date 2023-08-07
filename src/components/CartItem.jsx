@@ -6,7 +6,7 @@ import { CartContext } from "../contexts/CartContext";
 
 const CartItem = ({ item }) => {
 
-  const {removeFromCart} = useContext(CartContext);
+  const {removeFromCart, increaseAmount, decreaseAmount} = useContext(CartContext);
   // destruction
   const { id, title, amount, price, image } = item;
   return (
@@ -34,19 +34,19 @@ const CartItem = ({ item }) => {
           {/* increment decreement and amount */}
           <div className=" flex gap-x-2 h-[36px] text-sm">
             <div className="flex flex-1 max-w-[100px]  items-center h-full text-primary font-medium">
-              <div className=" flex flex-1 justify-center items-center cursor-pointer">
+              <div onClick={()=>decreaseAmount(id)} className=" flex flex-1 justify-center items-center cursor-pointer">
                 <IoMdRemove />
               </div>
               <div className="flex h-full justify-center items-center px-2">
                 {amount}
               </div>
-              <div className="flex flex-1 h-full justify-center items-center cursor-pointer">
+              <div onClick={()=>increaseAmount(id)} className="flex flex-1 h-full justify-center items-center cursor-pointer">
                 <IoMdAdd />
               </div>
             </div>
             <div className="flex flex-1 items-center justify-around">$ {price}</div>
             <div className="flex-1 flex justify-end items-center text-primary font-medium">
-              {`$ ${parseFloat(item.price * amount).toFixed(2)}`}
+              {`$ ${parseFloat(item.price*amount).toFixed(2)}`}
             </div>
           </div>
         </div>

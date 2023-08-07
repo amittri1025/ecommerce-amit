@@ -6,6 +6,7 @@ import ProductDetails from './pages/ProductDetails'
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Loader from "./components/Loader";
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />
+          {/* <Route path="/loader" element={<Loader />} /> */}
         </Routes>
         <Sidebar />
         <Footer />
