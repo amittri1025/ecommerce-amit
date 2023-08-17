@@ -41,22 +41,64 @@
 
 - Creating a Context and Putting a central data in it.
 
+## How to use createContext for data
+
 Read [What are Contexts in React](https://react.dev/reference/react/createContext)
 
+Step 1. First Create Context for a particular thing, here
+I want to store Products, so **Product Context**.
+
+File name is ```Contexts/ProductContext.jsx```
+
+  ```js
+  // here we created a context
+  export const ProductContext = createContext();
+
+  const ProductProvider = ({ children }) => {
+    const [products, setProducts] = useState([]);
+    // use effect portion
+
+    return (
+      <ProductContext.Provider value={products.id}>
+        {children}
+      </ProductContext.Provider>
+    );
+  };
+
+  export default ProductProvider;
+  ```
+
+  You successfully Created a Context, Let's use it.
+
+Step 2. To transfer this data to whole project directory , wrap
+```index.js``` with our ```ProductProvider```.
+
 ```js
-// here we created a context
-export const ProductContext = createContext();
+// products provider
+import ProductProvider from "./contexts/ProductContext";
 
-const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
-  // use effect portion
-
-  return (
-    <ProductContext.Provider value={products.id}>
-      {children}
-    </ProductContext.Provider>
-  );
-};
-
-export default ProductProvider;
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+      <ProductProvider>
+          <App />
+      </ProductProvider>
+);
 ```
+
+***Using it in our components***
+
+```js
+  import { ProductContext } from "../contexts/ProductContext";
+  const ProductDetails = () =>{
+
+    // importing products from ProductContext
+    const { products } = useContext(ProductContext);
+    return (
+      <>
+
+      </>
+    )
+  }
+```
+
+🥳🎉 Bang Bang, Your're done 🥳🎉 

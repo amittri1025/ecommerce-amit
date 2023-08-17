@@ -5,8 +5,11 @@ import Hero from "../components/Hero";
 import Loader from "../components/Loader";
 
 const Home = () => {
+
+  // productContext se Products fetch kara
   const { products, isLoading } = useContext(ProductContext);
-  console.log("is lOading ka status", isLoading);
+  
+
   const filteredProducts = products.filter((item) => {
     return (
       item.category === "men's clothing" || item.category === "women's clothing"
